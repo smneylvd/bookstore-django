@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block body %}
+    <style>
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .main-section {
+            width: 100%;
+        }
+
+        .left-side-movie-box img {
+            width: 100%;
+        }
+
+        .left-side-movie-box .sub-img img {
+            margin-top: 5px;
+            width: 83px;
+            height: 100px;
+        }
+
+        .right-side-pro-detail span {
+            font-size: 15px;
+        }
+
+        .right-side-pro-detail p {
+            font-size: 25px;
+            color: #a1a1a1;
+        }
+
+        .right-side-pro-detail .price-pro {
+            color: #E45641;
+        }
+
+        .right-side-pro-detail .tag-section {
+            font-size: 18px;
+            color: #5D4C46;
+        }
+
+        .pro-box-section .pro-box img {
+            width: 100%;
+            height: 200px;
+        }
+
+        @media (min-width: 360px) and (max-width: 640px) {
+            .pro-box-section .pro-box img {
+                height: auto;
+            }
+        }
+    </style>
+
+    <section class="pb-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="col-lg-8 border p-3 main-section bg-white">
+                <h1 class="p-4">
+                    {{ book.name }}
+                </h1>
+                <div class="row m-0">
+                    <div class="col-lg-4 left-side-movie-box pb-3">
+                        <img src="{{ book.image }}"
+                             class="h-100 ps-4">
+                        <span class="sub-img">
+                </span>
+                    </div>
+                    <div class="col-lg-8 h-100">
+                        <div class="right-side-pro-detail border p-3 m-0">
+                            <div class="row">
+                                <div class="col-lg-12 pt-2">
+                                    <h2>Description</h2>
+                                    <hr class="m-0 pt-2 mt-2">
+                                    <p class="text-body ms-2">{{ book.description }}</p>
+                                    <p class="text-body ms-2">Author: {{ book.author }}</p>
+                                    <hr class="m-0 pt-2 mt-2">
+                                </div>
+                                <div class="col-lg-12 pt-2 ms-2">
+                                <span>Rating: <br>
+                                    {% for i in rating %}
+                                        {% if i == 0 %}
+                                            <i class="bi bi-star"></i>
+                                        {% else %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    </span>
+                                    <h5>{{ book.rating }}</h5>
+
+                                    <hr class="m-0 pt-2 mt-2">
+
+                                </div>
+                                <div class="col-lg-12 mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 pb-2">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet
+                                            ligula eget justo elementum interdum. Nunc libero ante, dignissim sed sapien
+                                            in, maximus luctus justo. Ut lobortis, ex et pharetra posuere, magna nibh
+                                            elementum risus, eu ornare metus odio quis urna. Nulla ac imperdiet erat.
+                                            Sed at augue auctor, aliquam velit at, tempor ante. Etiam placerat id purus
+                                            at euismod. Vestibulum convallis imperdiet ante, vitae ornare ante sagittis
+                                            sed. Integer rutrum convallis odio in dapibus. Nunc placerat tellus ac felis
+                                            imperdiet congue.
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if current_owner %}
+                                <div class="col-lg-12 mt-auo">
+                                    <strong>Borrowed by:  </strong>
+                                    <i class="bi bi-person-circle"></i>
+                                    <span>{{ current_owner.first_name }} {{ current_owner.last_name }} </span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
